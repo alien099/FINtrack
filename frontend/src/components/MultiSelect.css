@@ -1,0 +1,68 @@
+.ms {
+  position: relative;
+  min-width: 220px;
+  max-width: 220px;
+  font-size: 12px;
+}
+
+.ms-control {
+  padding: 10px 12px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  color: #202224;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+
+  background: white;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  z-index: 1000;
+  padding: 8px;
+}
+
+.ms-search {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+.ms-options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.ms-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #202224;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ms-item:hover {
+  background: #f5f7fb;
+}
+
+.ms-empty {
+  padding: 10px;
+  color: #888;
+  font-size: 13px;
+}

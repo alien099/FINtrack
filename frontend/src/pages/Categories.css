@@ -1,0 +1,291 @@
+.search {
+  width: 260px;
+  border: 1px solid #e5e7eb;
+  color: #202224;
+  border-radius: 12px;
+  background: white;
+  outline: none;
+  transition: 0.2s;
+}
+
+.search:focus {
+  border-color: #0A315C;
+}
+
+.error {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #ffe3e8;
+  color: #E93059;
+  font-size: 14px;
+}
+
+.table-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: white;
+  border-radius: 16px;
+}
+
+.categories-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: white;
+}
+
+.categories-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+  box-shadow: inset 0 -1px 0 #e5e7eb;
+}
+
+.categories-table th {
+  padding: 12px 14px;
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.categories-table td {
+  padding: 6px 14px;
+  height: 42px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top: 1px solid #f1f1f1;
+  font-size: 14px;
+}
+
+.custom-category {
+  color: #202224; 
+}
+
+.default-category {
+  color: #9ca3af; 
+}
+
+.default-category:hover {
+  color: #6b7280;
+}
+
+.categories-table th:nth-child(1),
+.categories-table td:nth-child(1) {
+  width: 70%;
+  padding-left: 40px;
+}
+
+.categories-table th:nth-child(2),
+.categories-table td:nth-child(2) {
+  width: 18%;
+  text-align: center;
+}
+
+.categories-table th:nth-child(3),
+.categories-table td:nth-child(3) {
+  width: 12%;
+  text-align: center;
+  padding-right: 20px;
+}
+
+.categories-table tbody tr {
+  transition: 0.15s;
+}
+
+.categories-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.editable {
+  cursor: pointer;
+}
+
+.editable input {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  outline: none;
+}
+
+.type-cell {
+  text-align: center;
+  width: 140px;
+}
+
+.income,
+.expense {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 24px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.income {
+  background: #C5D4E4;
+  color:#0A315C;
+}
+
+.expense {
+  background: rgba(233, 48, 89, 0.12);
+  color: #E93059;
+}
+
+.actions {
+  width: 110px;
+  text-align: right;
+}
+
+.delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(233, 48, 89, 0.2);
+  background: white;
+  color: #E93059;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete:hover {
+  background: #E93059;
+  color: white;
+  border-color: #E93059;
+  transform: translateY(-1px);
+}
+
+.default-badge {
+  margin-left: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 49, 92, 0.25); /* фирменный синий затемнённый фон */
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 380px;
+  background: white;
+
+  border-radius: 18px;
+  border: 1px solid #eef0f5;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+
+  padding: 22px;
+  text-align: left;
+
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #202224;
+  margin-bottom: 10px;
+}
+
+.modal p {
+  font-size: 14px;
+  color: #606060;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal .cancel {
+  padding: 6px 12px;
+  border-radius: 8px;
+
+  border: 1px solid #e5e7eb;
+  background: white;
+
+  color: #0A315C;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal .cancel:hover {
+  background: #f8fafc;
+  border-color: #dbe2ea;
+  transform: translateY(-1px);
+}
+
+.modal .danger {
+  padding: 6px 12px;
+  border-radius: 8px;
+
+  border: 1px solid rgba(233, 48, 89, 0.2);
+  background: white;
+
+  color: #E93059;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal .danger:hover {
+  background: #FFF0F4;
+  border-color: #E0A0AE;
+  transform: translateY(-1px);
+}
