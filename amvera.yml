@@ -6,9 +6,7 @@ meta:
 
 build:
   requirementsPath: requirements.txt
-  workDir: backend
 
 run:
-  workDir: backend
-  scriptName: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+  scriptName: sh -c "cd backend && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
   containerPort: 8000
