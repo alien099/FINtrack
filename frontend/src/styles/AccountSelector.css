@@ -1,0 +1,72 @@
+/* =============================================
+   ACCOUNT SELECTOR
+   ============================================= */
+
+.as {
+  position: relative;
+  min-width: 100px;
+  max-width: 150px;
+  flex: 0 1 auto;
+  z-index: 30;
+}
+
+/* padding, font-size, height, border, border-radius, background, color, transition — в common.css */
+.as-control {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.as-placeholder { color: #9ca3af; }
+
+.as-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 160px;
+  width: max-content;
+  max-width: 250px;
+  background: white;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.as-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #202224;
+  transition: background 0.15s ease;
+}
+
+.as-item:hover { background: #f5f7fb; }
+.as-item.active { background: #0A315C; color: white; }
+
+.as-empty { padding: 16px; text-align: center; }
+.as-empty p { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+
+.as-create-btn {
+  padding: 8px 16px;
+  background: #0A315C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.as-create-btn:hover { background: #0d3d70; }
+
+@media (min-width: 600px) {
+  .as { min-width: 80px; max-width: 170px; }
+}
+
+@media (min-width: 1024px) {
+  .as { min-width: 140px; max-width: 200px; }
+  .as-item { font-size: 13px; }
+}

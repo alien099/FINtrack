@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./HomePage.css";
+import "../styles/HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ function HomePage() {
         <div className="container contentContainer">
 
           <Link to="/" className="topContent">
-            <img className="brandLogo" src="/img/logo.png" alt="" />
+          { /*<img className="brandLogo" src="/img/logo.png" alt="" />*/}
             <div className="brandNameContainer">
               <span className="brandNameContainer_span0">FIN</span>
               <span className="brandNameContainer_span1">track</span>
@@ -123,7 +123,7 @@ function HomePage() {
                 <img className="statsIcon" src="/img/user.png" alt="" />
                 
                 <div className="statsText">
-                  <div className="usersStat">90+</div>
+                  <div className="usersStat">90 +</div>
                   <div className="statsDescription">Пользователей</div>
                 </div>
               </div> 
@@ -132,7 +132,7 @@ function HomePage() {
                 <img className="statsIcon" src="/img/star.png" alt="" />
 
                 <div className="statsText">
-                  <div className="usersStat">15+</div>
+                  <div className="usersStat">15 +</div>
                   <div className="statsDescription">Категорий</div>
                 </div>
               </div>

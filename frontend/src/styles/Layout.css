@@ -1,0 +1,299 @@
+/* =============================================
+   LAYOUT — БАЗОВЫЕ СТИЛИ (Mobile First)
+   ============================================= */
+
+.layout {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  background: #f5f6fa;
+  font-family: 'Nunito Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== BURGER BUTTON ===== */
+
+.burger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 1100;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #eef0f5;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.burger-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #0A315C;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.burger-btn.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger-btn.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.burger-btn.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== OVERLAY ===== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  height: 100dvh;
+  background: white;
+  padding: 16px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #eef0f5;
+  z-index: 1090;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-top {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 44px;
+  margin-bottom: 28px;
+  letter-spacing: 0.5px;
+  color: #0A315C;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar .logo .accent {
+  color: #E93059;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.sidebar nav a {
+  color: #202224;
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.nav-divider {
+  height: 1px;
+  background: #eef0f5;
+  margin: 8px 12px;
+  flex-shrink: 0;
+}
+
+.nav-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.sidebar nav a:hover {
+  background: #f3f6fb;
+  color: #0A315C;
+}
+
+.sidebar nav a.active {
+  background: #0A315C;
+  color: white;
+  box-shadow: 0 4px 12px rgba(10, 49, 92, 0.25);
+}
+
+/* Нижняя часть */
+.sidebar-bottom {
+  border-top: 1px solid #eef0f5;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.user-info {
+  font-size: 14px;
+  color: #202224;
+  text-align: center;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #E93059;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #c81f45;
+  box-shadow: 0 4px 12px rgba(233, 48, 89, 0.3);
+}
+
+/* ===== CONTENT ===== */
+
+.content {
+  flex: 1;
+  width: 100%;
+  min-width: 0;                            
+  padding: 16px;
+  padding-top: 60px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =============================================
+   ПЛАНШЕТЫ (от 768px)
+   ============================================= */
+@media (min-width: 768px) {
+  .burger-btn {
+    display: none;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 220px;
+    height: auto;                            /* 🔥 убираем фикс. высоту */
+    min-height: 0;
+    transform: translateX(0);
+    box-shadow: none;
+    padding: 20px 14px;
+    overflow-y: auto;
+    flex-shrink: 0;                          /* 🔥 не сжимается */
+  }
+
+  .sidebar .logo {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+  .sidebar nav a {
+    padding: 12px 16px;
+  }
+
+  .content {
+    padding: 24px;
+    padding-top: 24px;
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;                        /* 🔥 скролл внутри контента */
+    overflow-x: hidden;
+    min-height: 0;
+  }
+}
+
+
+/* =============================================
+   ДЕСКТОПЫ (от 1024px)
+   ============================================= */
+@media (min-width: 1024px) {
+  .layout {
+    overflow: hidden;                        /* 🔥 БЛОКИРУЕМ общий скролл */
+  }
+
+  .sidebar {
+    width: 240px;
+    padding: 24px 18px;
+    height: 100%;                            /* 🔥 на всю высоту */
+    overflow-y: auto;                        /* 🔥 скролл только внутри */
+    flex-shrink: 0;
+  }
+
+  .sidebar .logo {
+    font-size: 22px;
+    margin-top: 32px;
+    margin-bottom: 36px;
+  }
+
+  .sidebar nav {
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .sidebar nav a {
+    padding: 15px 20px;
+  }
+
+  .content {
+    padding: 30px;
+    padding-top: 30px;
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;                        /* 🔥 скролл только внутри */
+    overflow-x: hidden;
+    min-height: 0;
+  }
+}

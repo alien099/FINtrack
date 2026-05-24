@@ -7,7 +7,11 @@ from .views import (
     BalanceView,
     AnalyticsView,
     ExportTransactionsView,
-    MeView
+    DownloadTemplateView,
+    ImportTransactionsView,
+    MeView,
+    AccountViewSet,
+    TransferView
 )
 
 from rest_framework_simplejwt.views import (
@@ -16,6 +20,7 @@ from rest_framework_simplejwt.views import (
 )
 
 router = DefaultRouter()
+router.register(r'accounts', AccountViewSet, basename='accounts')
 router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'transactions', TransactionViewSet, basename='transaction')
 
@@ -26,6 +31,9 @@ urlpatterns = [
     path('balance/', BalanceView.as_view()),
     path("auth/me/", MeView.as_view()),
     path("transactions/export/", ExportTransactionsView.as_view()),
+    path("transactions/template/", DownloadTemplateView.as_view()),
+    path("transactions/import/", ImportTransactionsView.as_view()),
+    path("transactions/transfer/", TransferView.as_view()),
     path('analytics/', AnalyticsView.as_view()),
     path('', include(router.urls)),
 ]

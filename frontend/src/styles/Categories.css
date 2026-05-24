@@ -1,0 +1,151 @@
+/* =============================================
+   CATEGORIES — УНИКАЛЬНЫЕ СТИЛИ
+   ============================================= */
+
+/* ===== TABLE ===== */
+
+.categories-table {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.categories-table-wrapper {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: white;
+  -webkit-overflow-scrolling: touch;
+  min-width: 380px;
+}
+
+.categories-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+  box-shadow: inset 0 -1px 0 #e5e7eb;
+}
+
+.categories-table thead tr:first-child th:first-child { border-top-left-radius: 14px; }
+.categories-table thead tr:first-child th:last-child { border-top-right-radius: 14px; }
+
+.categories-table th {
+  padding: 10px 8px;
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.categories-table td {
+  padding: 4px 8px;
+  height: 44px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top: 1px solid #f1f1f1;
+  font-size: 13px;
+  color: #606060;
+}
+
+.categories-table tbody tr { transition: 0.15s; }
+.categories-table tbody tr:hover { background: #f8fbff; }
+
+/* Колонки */
+.categories-table th:nth-child(1),
+.categories-table td:nth-child(1) { width: 55%; padding-left: 16px; }
+.categories-table th:nth-child(2),
+.categories-table td:nth-child(2) { width: 20%; text-align: center; }
+.categories-table th:nth-child(3),
+.categories-table td:nth-child(3) { width: 25%; text-align: center; padding-right: 8px; }
+
+/* ===== CATEGORY STYLES ===== */
+
+.custom-category { color: #202224; }
+.default-category { color: #9ca3af; }
+.default-category:hover { color: #6b7280; }
+
+.editable { cursor: pointer; }
+.editable input { width: 100%; height: 36px; padding: 0 8px; border: 1px solid #dbe2ea; border-radius: 8px; outline: none; font-size: 13px; }
+
+.type-cell { text-align: center; }
+
+.income-type,
+.expense-type {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.income-type { background: #C5D4E4; color: #0A315C; }
+.expense-type { background: rgba(233, 48, 89, 0.12); color: #E93059; }
+
+.actions { text-align: center; }
+
+.delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(233, 48, 89, 0.2);
+  background: white;
+  color: #E93059;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete:hover { background: #E93059; color: white; border-color: #E93059; }
+
+
+/* =============================================
+   ПЛАНШЕТЫ (от 600px)
+   ============================================= */
+@media (min-width: 600px) {
+  .categories-table { border-radius: 16px; }
+  .categories-table thead tr:first-child th:first-child { border-top-left-radius: 16px; }
+  .categories-table thead tr:first-child th:last-child { border-top-right-radius: 16px; }
+  .categories-table-wrapper { min-width: 0; }
+  .categories-table th { padding: 12px 10px; font-size: 12px; }
+  .categories-table td { padding: 6px 10px; font-size: 14px; }
+  .categories-table th:nth-child(1),
+  .categories-table td:nth-child(1) { width: 65%; padding-left: 24px; }
+  .categories-table th:nth-child(2),
+  .categories-table td:nth-child(2) { width: 18%; }
+  .categories-table th:nth-child(3),
+  .categories-table td:nth-child(3) { width: 17%; padding-right: 12px; }
+  .income-type,
+  .expense-type { padding: 4px 12px; font-size: 12px; width: 82px; height: 24px; }
+  .delete { padding: 6px 10px; font-size: 12px; border-radius: 8px; }
+}
+
+
+/* =============================================
+   ДЕСКТОПЫ (от 1024px)
+   ============================================= */
+@media (min-width: 1024px) {
+  .categories-table th { padding: 12px 14px; }
+  .categories-table td { padding: 6px 14px; }
+  .categories-table th:nth-child(1),
+  .categories-table td:nth-child(1) { width: 70%; padding-left: 40px; }
+  .categories-table th:nth-child(2),
+  .categories-table td:nth-child(2) { width: 18%; }
+  .categories-table th:nth-child(3),
+  .categories-table td:nth-child(3) { width: 12%; padding-right: 20px; }
+  .editable input { height: 38px; border-radius: 10px; }
+  .delete:hover { transform: translateY(-1px); }
+}

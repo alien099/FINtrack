@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./TypeSelect.css";
+import "../styles/TypeSelect.css";
 
 function TypeSelect({ value, onChange, onlyTypes = false }) {
   const [open, setOpen] = useState(false);

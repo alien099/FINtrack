@@ -1,0 +1,76 @@
+/* =============================================
+   MULTISELECT
+   ============================================= */
+
+.ms {
+  position: relative;
+  min-width: 65px;
+  max-width: 100%;
+  flex: 1;
+  z-index: 21;
+}
+
+/* padding, font-size, height, border, border-radius, background, color, transition — в common.css */
+.ms-control {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+}
+
+.ms-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 180px;
+  width: max-content;
+  max-width: 260px;
+  background: white;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  z-index: 1000;
+  padding: 8px;
+}
+
+.ms-search {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #202224;
+}
+
+.ms-search:focus { border-color: #0A315C; }
+
+.ms-options { max-height: 180px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.ms-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #202224;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.15s ease;
+}
+
+.ms-item:hover { background: #f5f7fb; }
+.ms-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #0A315C; flex-shrink: 0; cursor: pointer; }
+.ms-empty { padding: 10px; color: #888; font-size: 12px; text-align: center; }
+
+@media (min-width: 600px) {
+  .ms { min-width: 85px; flex: 0 1 auto; }
+  .ms-control { max-width: 150px; }
+}
+
+@media (min-width: 1024px) {
+  .ms-control { max-width: 200px; }
+  .ms-dropdown { max-width: 280px; }
+  .ms-item { font-size: 13px; }
+}

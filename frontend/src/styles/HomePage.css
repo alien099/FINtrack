@@ -1,0 +1,724 @@
+/* =============================================
+   БАЗОВЫЕ СТИЛИ (Mobile First)
+   ============================================= */
+* {
+  scroll-behavior: smooth;
+  font-family: 'Rubik', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 16px;
+  color: #4f5665;
+}
+
+.finance-project.main {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #0A315C;
+}
+
+/* Общий контейнер */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ===== HEADER (Mobile First) ===== */
+.featureIntroSection {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.contentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Логотип */
+.topContent {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s;
+  gap: 10px;
+}
+
+.topContent:hover {
+  opacity: 0.8;
+}
+
+.brandLogo {
+  width: 30px;
+}
+
+.brandNameContainer {
+  font-size: 18px;
+  font-weight: 700;
+  display: none;
+}
+
+.brandNameContainer_span0 {
+  color: #e93059;
+}
+
+.brandNameContainer_span1 {
+  color: #0A315C;
+}
+
+/* Навигация */
+.wrapper {
+  display: flex;
+  gap: 15px;
+  order: 3;
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 5px;
+}
+
+.wrapper span {
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+  color: #4f5665;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+.wrapper span.active {
+  color: #0A315C;
+  font-weight: 500;
+}
+
+.wrapper span.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #e93059;
+  transform: scaleX(1);
+}
+
+/* Кнопки пользователя */
+.userActionContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userActionContainer a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0A315C;
+  transition: 0.2s;
+}
+
+.loginLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0A315C;
+  border: 2px solid #0A315C;
+  padding: 8px 16px;
+  border-radius: 25px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+/* ===== HERO (Mobile First) ===== */
+.financialControlSection {
+  padding: 40px 0;
+}
+
+.contentInnerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+}
+
+.textContentWrapper {
+  max-width: 100%;
+}
+
+.introText {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.descriptionBox {
+  color: #4f5665;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.tryButton {
+  padding: 14px 40px;
+  font-size: 16px;
+  background: #e93059;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 6px 15px rgba(233, 48, 89, 0.25);
+}
+
+.fintrackImage {
+  width: 80%;
+  max-width: 350px;
+  margin-right: 0;
+}
+
+/* Статистика */
+.statisticsBlock {
+  background: #f8f8f8;
+  padding: 25px 15px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.statisticsContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;              
+  gap: 12px;
+}
+
+.statsItemWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;                 
+}
+
+.statsIcon {
+  width: 28px;              
+  height: 28px;
+}
+
+.statsText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.usersStat {
+  font-size: 18px;         
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.statsDescription {
+  font-size: 10px;          
+  color: #4F5665;
+  white-space: nowrap;      
+}
+
+/* ===== FEATURES ===== */
+.appFeaturesSection {
+  padding: 30px 0 30px;
+}
+
+.featuresLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.featuresImageWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.featureImage {
+  width: 70%;
+  max-width: 300px;
+}
+
+.descriptionContainer {
+  max-width: 100%;
+  text-align: center;
+}
+
+.appCapabilitiesDescription {
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #0A315C;
+}
+
+.featureDescription {
+  color: #4F5665;
+  margin-bottom: 15px;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: #4F5665;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===== ABOUT ===== */
+.aboutSection {
+  padding: 30px 0 60px; 
+}
+
+.aboutHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.aboutTitle {
+  font-size: 28px;
+  font-weight: 500;
+  color: #0A315C;
+}
+
+.aboutSubtitle {
+  margin-top: 15px;
+  font-size: 15px;
+  color: #4F5665;
+  max-width: 100%;
+  line-height: 1.6;
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.aboutImageWrapper {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.aboutImage {
+  width: 260px;
+  max-width: 100%;
+}
+
+.aboutText {
+  color: #4F5665;
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 100%;
+  text-align: left;
+}
+
+/* ===== DEMO ===== */
+.demoSection {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -60px;
+}
+
+.demoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  background: #f8f8f8;
+  padding: 35px 25px;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.demoContent h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0A315C;
+  color: white;
+  padding: 100px 0 40px;
+  position: relative;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+  align-items: center;
+}
+
+.footerLogo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.logoFin { color: #e93059; }
+.logoTrack { color: white; }
+
+.footerDescription {
+  color: #b0b7c3;
+  line-height: 1.6;
+}
+
+.footerIcons {
+  display: flex;
+  gap: 18px;
+}
+
+.footerIcons img {
+  width: 30px;
+  cursor: pointer;
+}
+
+/* 🔥 ИСПРАВЛЕНИЕ 4: футер-колонки — текст выровнен по левому краю */
+.footerRight {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.footerTitle {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.footerColumn span, 
+.footerColumn a {
+  color: #b0b7c3;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footerCopyright {
+  color: #6b7280;
+  font-size: 13px;
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* =============================================
+   ПЛАНШЕТЫ (от 600px)
+   ============================================= */
+@media (min-width: 600px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .brandNameContainer {
+    display: block;
+  }
+  .brandLogo {
+    width: 32px;
+  }
+
+  .contentContainer {
+    flex-wrap: nowrap;
+  }
+  .wrapper {
+    order: 0;
+    width: auto;
+    margin-top: 0;
+    overflow-x: visible;
+  }
+  .wrapper span {
+    font-size: 15px;
+  }
+
+  .introText {
+    font-size: 38px;
+  }
+  .fintrackImage {
+    width: 60%;
+  }
+
+  .statisticsBlock {
+    padding: 40px 30px;
+  }
+  .usersStat {
+    font-size: 28px;
+  }
+
+  .featuresLayout, .aboutContent {
+    gap: 50px;
+  }
+  .featureImage {
+    width: 60%;
+    max-width: 400px;
+  }
+  .aboutImage {
+    width: 180px;
+    max-width: 100%;
+  }
+
+  /* одинаковый размер заголовков */
+  .appCapabilitiesDescription,
+  .aboutTitle {
+    font-size: 32px;
+  }
+
+  .demoWrapper {
+    padding: 45px 35px;
+  }
+
+  .footerContent {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .footerLeft {
+    align-items: flex-start;
+    text-align: left;
+    max-width: 300px;
+  }
+  .footerRight {
+    justify-content: flex-end;
+    gap: 60px;
+  }
+}
+
+/* =============================================
+   ДЕСКТОПЫ (от 1024px)
+   ============================================= */
+@media (min-width: 1024px) {
+  .container {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* HEADER */
+  .brandLogo { width: 35px; }
+  .brandNameContainer { font-size: 20px; }
+  .wrapper { gap: 30px; }
+  .wrapper span {
+    font-size: 16px;
+    padding-bottom: 6px;
+  }
+  .wrapper span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #ccc;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .wrapper span:hover::after {
+    transform: scaleX(1);
+    background: #e93059;
+  }
+  .wrapper span.active::after {
+    transform: scaleX(1);
+    background: #e93059;
+  }
+  .loginLink {
+    padding: 10px 40px;
+    font-size: 16px;
+  }
+  .loginLink:hover {
+    background: #0A315C;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(11, 19, 42, 0.18);
+  }
+
+  /* 🔥 ИСПРАВЛЕНИЕ 1: HERO — картинка справа и БОЛЬШЕ */
+  .contentInnerWrapper {
+    flex-direction: row;
+    text-align: left;
+  }
+  .textContentWrapper {
+    max-width: 45%;
+    order: 1;
+  }
+  .fintrackImage {
+    width: 55%;
+    max-width: 600px;
+    margin-right: 0;
+    margin-left: auto;
+    order: 2;
+  }
+
+  .introText {
+    font-size: 50px;
+  }
+
+  .statisticsBlock {
+    padding: 50px;
+  }
+
+  .statisticsContent {
+    flex-wrap: nowrap;
+  }
+  .statsItemWrapper {gap: 12px; }
+  
+  .statsIcon {
+    width: 48px;              
+    height: 48px;
+  }
+  .usersStat { font-size: 30px; }
+  .statsDescription { font-size: 20px; }
+
+  /* FEATURES */
+  .featuresLayout {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;                    
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .featuresImageWrapper {
+    width: 50%;                
+    display: flex;
+    justify-content: center;
+  }
+  .featureImage {
+    width: 80%;
+    max-width: 100%;
+  }
+  .descriptionContainer {
+    width: 50%;                
+    max-width: 50%;
+    text-align: left;
+  }
+  
+  .appCapabilitiesDescription,
+  .aboutTitle {
+    font-size: 35px;
+  }
+
+  .aboutContent {
+    flex-direction: row;
+    justify-content: center;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 10px auto;
+  }
+  .aboutImage {
+    width: 280px;
+    max-width: 100%;
+  }
+  .aboutText {
+    max-width: 50%;
+    text-align: left;
+  }
+
+  /* DEMO */
+  .demoWrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: 50px;
+  }
+
+  /* FOOTER */
+  .footerContent {
+    flex-direction: row;
+    gap: 60px;
+  }
+  .footerRight {
+    gap: 80px;
+  }
+  .footerColumn {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+/* Hover-эффекты только для десктопов */
+@media (hover: hover) {
+  .userActionContainer a:hover {
+    transform: translateY(-2px);
+    color: #e93059;
+  }
+  .tryButton:hover {
+    background: #D42D52;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(233, 48, 89, 0.35);
+  }
+  .footerIcons img:hover {
+    transform: scale(1.1);
+  }
+  .footerColumn span:hover {
+    color: white;
+  }
+}

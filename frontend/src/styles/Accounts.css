@@ -1,0 +1,179 @@
+/* =============================================
+   ACCOUNTS — УНИКАЛЬНЫЕ СТИЛИ
+   ============================================= */
+
+/* ===== Список счетов ===== */
+
+.accounts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #eef0f5;
+  border-left: 4px solid #0A315C;
+  transition: 0.2s;
+}
+
+.account-row:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+.account-row.inactive { opacity: 0.6; border-left-color: #9ca3af; }
+
+.account-row-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.account-row-name { font-weight: 600; color: #202224; }
+.inactive-badge { font-size: 11px; color: #9ca3af; font-weight: 400; }
+.account-row-type { font-size: 12px; color: #6b7280; }
+.account-row-balance { font-weight: 700; color: #202224; white-space: nowrap; }
+
+/* ===== Кнопки действий ===== */
+
+.account-row-actions { display: flex; gap: 6px; }
+
+.account-row-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.edit-btn { color: #0A315C; }
+.edit-btn:hover:not(:disabled) { border-color: #0A315C; background: #f3f6fb; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(10, 49, 92, 0.12); }
+.edit-btn:active { transform: translateY(0) scale(0.95); transition: all 0.1s ease; }
+
+.delete-btn { color: #E93059; }
+.delete-btn:hover:not(:disabled) { border-color: #E93059; background: #fff0f4; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(233, 48, 89, 0.15); }
+.delete-btn:active { transform: translateY(0) scale(0.95); transition: all 0.1s ease; }
+.delete-btn svg { transition: transform 0.3s ease; }
+.delete-btn:hover svg { transform: rotate(90deg); }
+
+.account-row-actions button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* ===== Пустое состояние ===== */
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 12px;
+  border: 2px dashed #e5e7eb;
+}
+
+.empty-state p { margin: 0 0 8px; color: #6b7280; font-size: 14px; }
+.empty-state p:last-child { margin-bottom: 0; font-size: 13px; color: #9ca3af; }
+
+/* ===== Кнопка добавления ===== */
+
+.add-account-btn {
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed #d0d7e2;
+  border-radius: 12px;
+  background: transparent;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-account-btn:hover { border-color: #0A315C; color: #0A315C; background: #f3f6fb; transform: translateY(-1px); }
+.add-account-btn:active { transform: translateY(0) scale(0.98); transition: all 0.1s ease; }
+
+/* ===== ПРЕДУПРЕЖДЕНИЕ ===== */
+
+.warning-text {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #e65100;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+/* ===== ФОРМА В МОДАЛКЕ ===== */
+
+.form-group { margin-bottom: 16px; }
+
+.form-group label { display: block; font-size: 13px; font-weight: 500; color: #6b7280; margin-bottom: 6px; }
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #202224;
+  background: #fcfdfd;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group input:focus,
+.form-group select:focus { border-color: #0A315C; box-shadow: 0 0 0 3px rgba(10, 49, 92, 0.08); }
+
+/* ===== КНОПКИ МОДАЛКИ ===== */
+
+.modal-actions .save {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #0A315C, #0d3d70);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(10, 49, 92, 0.2);
+}
+
+.modal-actions .save:hover { background: linear-gradient(135deg, #0d3d70, #124a8c); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 49, 92, 0.35); }
+.modal-actions .save:active { transform: translateY(0) scale(0.95); transition: all 0.1s ease; }
+
+.modal-actions .delete-confirm {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #E93059;
+  background: white;
+  color: #E93059;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-actions .delete-confirm:hover { background: linear-gradient(135deg, #E93059, #c81f45); color: white; border-color: #E93059; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(233, 48, 89, 0.35); }
+.modal-actions .delete-confirm:active { transform: translateY(0) scale(0.95); transition: all 0.1s ease; }
+
+
+/* =============================================
+   ПЛАНШЕТЫ (от 600px)
+   ============================================= */
+@media (min-width: 600px) {
+  .account-row { padding: 16px 18px; }
+  .account-row-actions button { width: 36px; height: 36px; }
+}
+
+
+/* =============================================
+   ДЕСКТОПЫ (от 1024px)
+   ============================================= */
+@media (min-width: 1024px) {
+  .accounts-list { gap: 10px; }
+  .account-row-actions button { width: 38px; height: 38px; border-radius: 10px; }
+}

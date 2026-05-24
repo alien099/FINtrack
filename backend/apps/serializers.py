@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Category, Transaction, Budget
+from .models import Category, Transaction, Budget, Account
 from django.db.models import Sum
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
@@ -37,7 +37,35 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+    
+# Счета
+class AccountSerializer(serializers.ModelSerializer):
+    balance = serializers.SerializerMethodField()
 
+    class Meta:
+        model = Account
+        fields = ['id', 'name', 'type', 'balance', 'currency', 'is_default', 'is_active', 'created_at']
+        read_only_fields = ['user', 'is_default', 'balance']
+
+    def get_balance(self, obj):
+        income = Transaction.objects.filter(
+            account=obj, category__type='income'
+        ).aggregate(total=Sum('amount'))['total'] or 0
+        expense = Transaction.objects.filter(
+            account=obj, category__type='expense'
+        ).aggregate(total=Sum('amount'))['total'] or 0
+        return income - expense
+
+    def validate(self, data):
+        name = data.get("name")
+        user = self.context['request'].user
+        qs = Account.objects.filter(user=user, name__iexact=name)
+        if self.instance:
+            qs = qs.exclude(id=self.instance.id)
+        if qs.exists():
+            raise serializers.ValidationError("Счет с таким названием уже существует")
+        return data
+    
 # Категории
 class CategorySerializer(serializers.ModelSerializer):
 
@@ -63,30 +91,24 @@ class CategorySerializer(serializers.ModelSerializer):
 
 # Транзакции
 class TransactionSerializer(serializers.ModelSerializer):
-    category_name = serializers.CharField(
-        source="category.name",
-        read_only=True
-    )
-
-    category_type = serializers.CharField(
-        source="category.type",
-        read_only=True
-    )
+    category_name = serializers.CharField(source="category.name", read_only=True)
+    category_type = serializers.CharField(source="category.type", read_only=True)
+    account_name = serializers.CharField(source="account.name", read_only=True)      
 
     class Meta:
         model = Transaction
-
         fields = (
             'id',
             'category',
             'category_name',
             'category_type',
+            'account',              
+            'account_name',         
             'amount',
             'currency',
             'date',
             'description'
         )
-
         read_only_fields = ('user',)
 
     def validate_amount(self, value):

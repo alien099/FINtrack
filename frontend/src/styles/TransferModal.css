@@ -1,0 +1,43 @@
+/* ===== МОДАЛКА ПЕРЕВОДА ===== */
+
+.transfer-modal {
+  max-width: 420px;
+}
+
+.transfer-arrow {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.transfer-modal select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #202224;
+  background: #fcfdfd;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.transfer-modal select:focus {
+  border-color: #0A315C;
+}
+
+.transfer-modal input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #202224;
+  background: #fcfdfd;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.transfer-modal input:focus {
+  border-color: #0A315C;
+}

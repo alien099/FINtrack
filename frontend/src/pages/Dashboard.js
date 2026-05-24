@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
+import AccountSelector from "../components/AccountSelector";
+import TransferModal from "../components/TransferModal";
+import CategorySelect from "../components/CategorySelect";
 import api from "../api";
-import "./Dashboard.css";
+import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -9,26 +12,25 @@ function Dashboard() {
   const [categories, setCategories] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [toast, setToast] = useState("");
+  const [showTransfer, setShowTransfer] = useState(false);
   
   const getCategoryName = (t) => {
-  if (t.category_name?.trim()) {
-    return t.category_name;
-  }
+    if (t.category_name?.trim()) return t.category_name;
+    return t.category_type === "income" ? "Прочие доходы" : "Прочие расходы";
+  };
 
-  return t.category_type === "income"
-    ? "Прочие доходы"
-    : "Прочие расходы";
-};
+  const getAccountName = (t) => {
+    return t.account_name || "—";
+  };
 
   const getCurrentMonthName = () => {
-    return new Date().toLocaleDateString("ru-RU", {
-      month: "long",
-    });
+    return new Date().toLocaleDateString("ru-RU", { month: "long" });
   };
 
   const [form, setForm] = useState({
     amount: "",
     category: "",
+    account: "",
     type: "income",
     date: new Date().toISOString().split("T")[0],
     description: ""
@@ -75,17 +77,10 @@ function Dashboard() {
 
   const getBudget = () => {
     const now = new Date();
-
     const currentKey = getBudgetKey();
-
     const prevMonth = new Date(now.getFullYear(), now.getMonth() - 1);
     const prevKey = `budget_${prevMonth.getFullYear()}_${String(prevMonth.getMonth() + 1).padStart(2, "0")}`;
-
-    return Number(
-      localStorage.getItem(currentKey) ||
-      localStorage.getItem(prevKey) ||
-      0
-    );
+    return Number(localStorage.getItem(currentKey) || localStorage.getItem(prevKey) || 0);
   };
 
   const saveBudget = (value) => {
@@ -95,17 +90,13 @@ function Dashboard() {
   const [budget, setBudget] = useState(0);
   const [budgetInput, setBudgetInput] = useState("");
   const [editingBudget, setEditingBudget] = useState(false);
-
   const isOverBudget = monthlyExpenses > budget;
-
   const monthDelta = monthlyIncome - monthlyExpenses;
 
   const groupedTransactions = useMemo(() => {
     const groups = {};
-
     transactions.forEach(t => {
       const date = new Date(t.date).toDateString();
-
       if (!groups[date]) groups[date] = [];
       groups[date].push(t);
     });
@@ -143,14 +134,14 @@ function Dashboard() {
 
   const [formError, setFormError] = useState("");
   const currentMonthTransactions = useMemo(() => {
-  const { start, end } = getMonthRange();
+    const { start, end } = getMonthRange();
 
-  return transactions.filter(
-    t =>
-      new Date(t.date) >= start &&
-      new Date(t.date) <= end
-  );
-}, [transactions]);
+    return transactions.filter(
+      t =>
+        new Date(t.date) >= start &&
+        new Date(t.date) <= end
+    );
+  }, [transactions]);
 
   const topExpenseCategory = useMemo(() => {
     const grouped = {};
@@ -178,17 +169,16 @@ function Dashboard() {
     return top;
   }, [currentMonthTransactions]);
 
-  const loadDashboard = async () => {
+ const loadDashboard = async () => {
     try {
       const [bal, tx, cat] = await Promise.all([
         api.get("balance/"),
         api.get("transactions/"),
         api.get("categories/")
       ]);
-
       setBalance(bal.data);
-      setTransactions(tx.data.results || []);
-      setCategories(cat.data.results || []);
+      setTransactions(Array.isArray(tx.data) ? tx.data : (tx.data.results || []));
+      setCategories(Array.isArray(cat.data) ? cat.data : (cat.data.results || []));
     } finally {
       setLoading(false);
     }
@@ -213,6 +203,11 @@ function Dashboard() {
       setFormError("Выберите категорию");
       return;
     }
+
+    if (!form.account) {
+          setFormError("Выберите счет");
+          return;
+        }
 
     if (!form.date) {
       setFormError("Выберите дату");
@@ -248,6 +243,7 @@ function Dashboard() {
   };
 
   const isFormValid =
+  form.account &&
   form.amount &&
   Number(form.amount) > 0 &&
   form.category &&
@@ -315,7 +311,6 @@ function Dashboard() {
 
       <div className="main-grid">
 
-        {/* LEFT SIDE */}
         <div className="left-column">
 
           <div className="card form-card">
@@ -352,29 +347,9 @@ function Dashboard() {
                 }
               />
 
-              <select
-                value={form.category}
-                onChange={(e) =>
-                  setForm({ ...form, category: e.target.value })
-                }
-              >
-                <option value="">Категория</option>
-
-                {categories
-                  .filter(c => c.type === form.type)
-                  .map(c => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-              </select>
-
-              <input
-                type="date"
-                value={form.date}
-                onChange={(e) =>
-                  setForm({ ...form, date: e.target.value })
-                }
+              <AccountSelector
+                value={form.account}
+                onChange={(id) => setForm({ ...form, account: id })}
               />
 
               <input
@@ -382,6 +357,20 @@ function Dashboard() {
                 value={form.description}
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
+                }
+              />
+              
+              <CategorySelect
+                value={form.category}
+                onChange={(id) => setForm({ ...form, category: id })}
+                type={form.type}
+              />
+
+              <input
+                type="date"
+                value={form.date}
+                onChange={(e) =>
+                  setForm({ ...form, date: e.target.value })
                 }
               />
 
@@ -409,84 +398,78 @@ function Dashboard() {
 
           </div>
 
+          <button className="transfer-btn" onClick={() => setShowTransfer(true)}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <polyline points="19 12 12 19 5 12"/>
+            </svg>
+            Перевод между счетами
+          </button>
+
           <div className="card budget-card">
 
-            <div className="budget-header">
+            {!editingBudget ? (
 
-              <span className="kpi-title">
-                Бюджет на {getCurrentMonthName()}
-              </span>
+              <div className="budget-row">
+                <div className="budget-info">
+                  <span className="kpi-title">
+                    Бюджет на {getCurrentMonthName()}
+                  </span>
+                  <h2>{formatAmount(budget, 0)} ₽</h2>
+                </div>
 
-              {!editingBudget && (
                 <button
+                  className="budget-change-btn"
                   onClick={() => {
                     setBudgetInput(budget);
                     setEditingBudget(true);
                   }}
                 >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                    <path d="m15 5 4 4"/>
+                  </svg>
                   Изменить
                 </button>
-              )}
-
-            </div>
-
-            {!editingBudget ? (
-
-              <h2>{formatAmount(budget, 0)} ₽</h2>
+              </div>
 
             ) : (
 
-              <div className="budget-edit">
-
+              <div className="budget-edit-row">
                 <input
                   type="number"
+                  className="budget-input"
                   value={budgetInput}
-                  onChange={(e) =>
-                    setBudgetInput(e.target.value)
-                  }
+                  onChange={(e) => setBudgetInput(e.target.value)}
+                  autoFocus
                 />
 
                 <button
+                  className="budget-save-btn"
                   onClick={() => {
                     const val = Number(budgetInput || 0);
-
                     setBudget(val);
                     saveBudget(val);
                     setEditingBudget(false);
                   }}
                 >
-                  Сохранить
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
                 </button>
 
                 <button
+                  className="budget-cancel-btn"
                   onClick={() => setEditingBudget(false)}
                 >
-                  Отмена
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
                 </button>
-
               </div>
 
             )}
-
-          </div>
-
-          <div className="card insights-card">
-
-            <div className="insights-list">
-
-              <div className="insight-item">
-
-                <span className="insight-label">
-                  Больше всего потрачено
-                </span>
-
-                <span className="insight-value">
-                  {topExpenseCategory.name}
-                </span>
-
-              </div>
-
-            </div>
 
           </div>
 
@@ -498,51 +481,44 @@ function Dashboard() {
           <h3>Последние операции</h3>
 
           <div className="feed-scroll">
-
             {groupedTransactions.length === 0 ? (
-
-              <div className="empty-state">
-                Нет операций
-              </div>
-
+              <div className="empty-state">Нет операций</div>
             ) : (
-
               groupedTransactions.map(([date, items]) => (
-
                 <div key={date} className="day-group">
-
-                  <div className="day-label">
-                    {formatDatePretty(date)}
-                  </div>
-
+                  <div className="day-label">{formatDatePretty(date)}</div>
                   {items.map(t => (
-
                     <div key={t.id} className="feed-item">
-
-                      <div className="category">
-                        {getCategoryName(t)}
+                      <div className="feed-left">
+                        <span className="feed-account">{getAccountName(t)}</span>
+                        <span className="feed-category">{getCategoryName(t)}</span>
                       </div>
-
-                      <div className={`amount ${t.category_type}`}>
+                      <div className={`feed-amount ${t.category_type}`}>
                         {t.category_type === "income" ? "+" : "-"}
                         {formatAmount(t.amount, 2)} ₽
                       </div>
-
                     </div>
-
                   ))}
-
                 </div>
-
               ))
-
             )}
-
           </div>
 
         </div>
 
       </div>
+
+       {showTransfer && (
+        <TransferModal
+          onClose={() => setShowTransfer(false)}
+          onSuccess={() => {
+            setShowTransfer(false);
+            loadDashboard();
+            showToast("Перевод выполнен");
+          }}
+          showToast={showToast}
+        />
+      )}
 
       {toast && (
         <div className="toast">

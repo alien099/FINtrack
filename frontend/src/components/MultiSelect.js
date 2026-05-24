@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import "./MultiSelect.css";
+import "../styles/MultiSelect.css";
 
 function MultiSelect({ options, value, onChange, placeholder = "Выбрать..." }) {
   const [open, setOpen] = useState(false);

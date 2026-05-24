@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ScrollToTop from "./components/ScrollToTop";
+import AccountsPage from "./pages/AccountsPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="transactions" element={<TransactionsPage />} />
           <Route path="categories" element={<CategoriesPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="accounts" element={<AccountsPage />} />
         </Route>
 
       </Routes>

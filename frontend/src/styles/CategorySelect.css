@@ -1,0 +1,53 @@
+/* =============================================
+   CATEGORY SELECT
+   ============================================= */
+
+.cs {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+  z-index: 10;
+  min-width: 100px;
+}
+
+/* padding, font-size, height, border, border-radius, background, color, transition — в common.css */
+.cs-control {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-placeholder { color: #9ca3af; }
+
+.cs-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  max-width: 250px;
+  background: white;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.cs-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #202224;
+  transition: background 0.15s ease;
+}
+
+.cs-item:hover { background: #f5f7fb; }
+.cs-item.active { background: #0A315C; color: white; }
+
+.cs-empty {
+  padding: 16px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+}

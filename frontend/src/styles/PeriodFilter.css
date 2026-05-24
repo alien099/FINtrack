@@ -1,0 +1,52 @@
+/* =============================================
+   PERIOD FILTER
+   ============================================= */
+
+.pf {
+  position: relative;
+  min-width: 100px;
+  max-width: 140px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+/* padding, font-size, height, border, border-radius, background, color, transition — в common.css */
+.pf-control {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pf-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 130px;
+  width: max-content;
+  background: white;
+  border: 1px solid #eef0f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.pf-item {
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #202224;
+  transition: background 0.15s ease;
+}
+
+.pf-item:hover { background: #f5f7fb; }
+.pf-item.active { background: #0A315C; color: white; }
+
+@media (min-width: 600px) {
+  .pf { min-width: 110px; max-width: 150px; }
+}
+
+@media (min-width: 1024px) {
+  .pf { min-width: 120px; max-width: 160px; }
+  .pf-item { padding: 10px 14px; font-size: 13px; }
+}

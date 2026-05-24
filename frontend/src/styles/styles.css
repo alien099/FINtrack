@@ -1,0 +1,391 @@
+/* =============================================
+   COMMON — ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ СТРАНИЦ
+   ============================================= */
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #c1c9d6 transparent;
+}
+
+:root {
+  --color-bg: #f5f7fb;
+  --color-card: #ffffff;
+  --color-primary: #0A315C;
+  --color-accent: #E93059;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-income: #10b981;
+  --color-expense: #E93059;
+  --font-family: 'Nunito Sans', sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 32px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-hover: 0 10px 25px rgba(10, 49, 92, 0.08);
+}
+
+*::-webkit-scrollbar { width: 5px; height: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: #c1c9d6; border-radius: 10px; }
+*::-webkit-scrollbar-thumb:hover { background: #a0aab8; }
+
+/* ===== PAGE ===== */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  padding-top: 18px;
+  background: #f5f7fb;
+  box-sizing: border-box;
+}
+
+.page h1 { font-size: 22px; color: #0A315C; margin: 0; padding-bottom: 14px; flex-shrink: 0; }
+.amount { white-space: nowrap; text-align: right; font-weight: 300; font-size: 13px; }
+
+/* ===== CARD BAR ===== */
+
+.card-bar {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.card-bar p { font-size: 11px; color: #202224; margin: 0; }
+
+/* Все фильтры и контролы */
+.card-bar input,
+.card-bar select,
+.card-bar .as-control,
+.card-bar .cs-control,
+.card-bar .ts-control,
+.card-bar .ms-control,
+.card-bar .pf-control {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 11px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #202224;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.card-bar input:hover,
+.card-bar select:hover,
+.card-bar .as-control:hover,
+.card-bar .cs-control:hover,
+.card-bar .ts-control:hover,
+.card-bar .ms-control:hover,
+.card-bar .pf-control:hover { border-color: #d0d7e2; }
+
+.card-bar input:focus,
+.card-bar select:focus { border-color: #0A315C; }
+
+.card-bar input::placeholder,
+.search::placeholder { color: #9ca3af; opacity: 1; }
+
+.left-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.left-bar > * { flex-shrink: 0; }
+.left-bar input[type="date"] { max-width: 94px; }
+.left-bar input[type="text"],
+.left-bar input[placeholder] { min-width: 90px; max-width: 120px; }
+
+.right-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-basis: 100%;                    
+  padding-top: 6px;
+  border-top: 1px solid #eef0f5;
+}
+
+/* ===== BUTTONS ===== */
+
+.card-bar button,
+.right-bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 11px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.card-bar button:not(.reset-icon):not(.active) {
+  border: 2px solid #0A315C;
+  color: #0A315C;
+  background: white;
+}
+
+.card-bar button:not(.reset-icon):not(.active):hover {
+  background: #0A315C;
+  border-color: #0A315C;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(10, 49, 92, 0.25);
+}
+
+.card-bar button:not(.reset-icon):active { transform: translateY(0); box-shadow: none; }
+
+.card-bar button.active {
+  background: #0A315C;
+  color: white;
+  border: 2px solid #0A315C;
+  box-shadow: 0 4px 14px rgba(10, 49, 92, 0.35);
+  transform: translateY(-1px);
+  font-weight: 600;
+}
+
+.card-bar button.active:hover { background: #0d3d70; border-color: #0d3d70; box-shadow: 0 6px 18px rgba(10, 49, 92, 0.4); }
+
+.right-bar button {
+  border: 2px solid transparent;
+  background: transparent;
+  color: #6b7280;
+}
+
+.right-bar button:hover { color: #0A315C; background: #f3f6fb; border-color: #d0d7e2; }
+
+.right-bar button.active {
+  background: #0A315C;
+  color: white;
+  border-color: #0A315C;
+  box-shadow: 0 4px 14px rgba(10, 49, 92, 0.35);
+  font-weight: 600;
+}
+
+.right-bar button.active:hover { background: #0d3d70; }
+
+.reset-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 2px solid transparent;
+  background: transparent;
+  color: #E93059;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  height: 38px;
+  width: 38px;
+  border-radius: 8px;
+}
+
+.reset-icon svg { width: 18px; height: 18px; }
+.reset-icon:hover { color: #E93059; transform: rotate(-30deg); }
+.reset-icon:active { transform: rotate(-30deg) scale(0.9); }
+
+/* ===== TABLE WRAPPER ===== */
+
+.table-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== TOAST ===== */
+
+.toast {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  left: auto;
+  bottom: auto;
+  height: auto;
+  max-height: 80px;
+  overflow: hidden;
+  max-width: 320px;
+  width: auto;
+  background: rgba(233, 48, 89, 0.12);
+  color: #E93059;
+  border: 1px solid #E93059;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 12px 40px rgba(233, 48, 89, 0.12);
+  z-index: 99999;
+  pointer-events: none;
+  text-align: left;
+  white-space: nowrap;
+  animation: toastShow 0.3s ease forwards;
+}
+
+@keyframes toastShow {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ===== MODAL ===== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 49, 92, 0.25);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #eef0f5;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  padding: 24px;
+  text-align: left;
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal h3 { font-size: 18px; font-weight: 700; color: #202224; margin: 0 0 16px; }
+.modal p { font-size: 14px; color: #606060; line-height: 1.5; margin: 0 0 16px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+.modal .cancel {
+  padding: 10px 16px; border-radius: 10px; border: 2px solid #e5e7eb;
+  background: white; color: #6b7280; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal .cancel:hover { background: #fce4e4; border-color: #f5c6cb; color: #e93059; transform: translateY(-1px); }
+
+.modal .danger {
+  padding: 10px 20px; border-radius: 10px; border: 2px solid #E93059;
+  background: white; color: #E93059; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal .danger:hover { background: linear-gradient(135deg, #E93059, #c81f45); color: white; border-color: #E93059; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(233, 48, 89, 0.35); }
+
+.empty { text-align: center; color: #888; font-size: 13px; padding: 30px 0 !important; }
+
+
+/* =============================================
+   ПЛАНШЕТЫ (от 600px)
+   ============================================= */
+@media (min-width: 600px) {
+  .page { padding: 24px; padding-top: 24px; }
+  .page h1 { font-size: 26px; padding-bottom: 20px; }
+
+  .card-bar { padding: 12px 14px; gap: 8px; }
+
+  .card-bar input, .card-bar select,
+  .card-bar .as-control, .card-bar .cs-control,
+  .card-bar .ts-control, .card-bar .ms-control,
+  .card-bar .pf-control { padding: 7px 10px; font-size: 12px; height: 34px; }
+
+  .left-bar { flex-wrap: nowrap; gap: 8px; }
+  .left-bar input[type="date"] { max-width: 120px; }
+  .left-bar input[type="text"],
+  .left-bar input[placeholder] { min-width: 120px; max-width: 160px; }
+
+  /* right-bar — отдельная строка */
+  .right-bar { flex-basis: 100%; padding-top: 6px; border-top: 1px solid #eef0f5; }
+
+  .card-bar button { font-size: 12px; padding: 7px 12px; height: 34px; }
+  .reset-icon { height: 34px; width: 34px; }
+  .reset-icon svg { width: 18px; height: 18px; }
+  .right-bar button { height: 34px; }
+  .table-wrapper { border-radius: 16px; }
+  .toast { top: 20px; right: 20px; max-width: 400px; }
+}
+
+
+/* =============================================
+   ДЕСКТОПЫ (от 1024px)
+   ============================================= */
+@media (min-width: 1024px) {
+  .page { height: 100%; overflow: hidden; padding: 20px 40px 24px; }
+  .page h1 { font-size: 28px; padding-bottom: 25px; }
+
+  .card-bar {
+    padding: 15px;
+    gap: 10px;
+    border-radius: 14px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .card-bar p{
+   font-size: 13px;
+  }
+
+  .card-bar input, .card-bar select,
+  .card-bar .as-control, .card-bar .cs-control,
+  .card-bar .ts-control, .card-bar .ms-control,
+  .card-bar .pf-control { padding: 8px 12px; font-size: 13px; height: 38px; border-radius: 10px; }
+
+  .left-bar { gap: 10px; flex-wrap: nowrap; }
+  .left-bar input[type="date"] { max-width: 140px; }
+  .left-bar input[type="text"],
+  .left-bar input[placeholder] { min-width: 140px; max-width: 180px; }
+
+
+  .right-bar {
+    flex-basis: auto;
+    padding-top: 0;
+    border-top: none;
+    border-left: 1px solid #eef0f5;
+    padding-left: 10px;
+    margin-left: auto;
+  }
+
+  .card-bar button { padding: 8px 14px; font-size: 13px; height: 38px; border-radius: 10px; }
+  .reset-icon { height: 58px; width: 58px; }
+  .reset-icon svg { width: 20px; height: 20px; }
+  .right-bar button { height: 38px; }
+  .table-wrapper { flex: 1; min-height: 0; overflow: visible; border-radius: 16px; }
+}

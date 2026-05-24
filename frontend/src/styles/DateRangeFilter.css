@@ -1,0 +1,41 @@
+/* =============================================
+   DATE RANGE FILTER
+   ============================================= */
+
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.date-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.date-group label {
+  font-size: 11px;
+  color: #202224;
+  flex-shrink: 0;
+}
+
+/* padding, font-size, height, border, border-radius, background, color, transition — в common.css */
+.date-group input {
+  max-width: 94px;
+}
+
+@media (min-width: 600px) {
+  .date-filter { gap: 6px; }
+  .date-group { gap: 4px; }
+  .date-group label { display: inline; font-size: 11px; }
+  .date-group input { max-width: 110px; }
+}
+
+@media (min-width: 1024px) {
+  .date-filter { gap: 10px; }
+  .date-group { gap: 8px; }
+  .date-group label { font-size: 12px; }
+  .date-group input { max-width: 140px; }
+}
