@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ttd7ogenp5tc5vjfufj+4l2iqn+*b#2+!-ygx9f1v^$qpk@id$'
+SECRET_KEY = os.environ.get('SECRET_KEY', '44c=nfy3yh^%xs7ag4#h#+4-fok+y^2u68n(b3_4p59s%ojv7c')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
@@ -156,4 +156,4 @@ FALLBACK_IDS = {
 "expense": 12
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ORIGINS', 'http://localhost:3000').split(',')
