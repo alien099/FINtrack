@@ -68,6 +68,17 @@
 
 /* ===== CATEGORY STYLES ===== */
 
+.categories-table td.custom-category {
+  color: #202224;
+}
+
+.categories-table td.default-category {
+  color: #9ca3af;
+}
+
+.categories-table td.default-category:hover {
+  color: #6b7280;
+}
 .custom-category { color: #202224; }
 .default-category { color: #9ca3af; }
 .default-category:hover { color: #6b7280; }

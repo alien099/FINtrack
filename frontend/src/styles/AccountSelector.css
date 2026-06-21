@@ -67,6 +67,6 @@
 }
 
 @media (min-width: 1024px) {
-  .as { min-width: 140px; max-width: 200px; }
+  .as { min-width: 140px; max-width: 100%; }
   .as-item { font-size: 13px; }
 }

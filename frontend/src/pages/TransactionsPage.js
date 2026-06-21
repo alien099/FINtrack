@@ -154,7 +154,8 @@ function TransactionsPage() {
 
   const exportToExcel = async () => {
     try {
-      const res = await api.get("transactions/export/", { responseType: "blob" });
+      const res = await api.get("transactions/export/", { 
+        responseType: "blob" });
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement("a");
       link.href = url;
